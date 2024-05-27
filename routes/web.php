@@ -12,6 +12,7 @@ use App\Http\Controllers\pengumumanController;
 Route::resource('home', homeAdminController::class);
 Route::resource('rekap',rekapBiodataController::class);
 Route::resource('pengumuman',pengumumanController::class);
+Route::get('biodataLengkap',[rekapBiodataController::class,'biodataLengkap']);
 
 Route::get('/pengajuan', function(){
     return view('admin.rekap.pengajuan.index');

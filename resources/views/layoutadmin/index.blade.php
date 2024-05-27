@@ -102,7 +102,7 @@
                 </section>
             </aside>
         </div>
-        <div class="sm:ml-64">
+        <div class="sm:ml-64 bg-slate-500">
             <div class="sm:ml-64">
                 @yield('konten')
             </div>

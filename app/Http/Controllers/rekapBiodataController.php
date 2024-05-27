@@ -15,6 +15,11 @@ class rekapBiodataController extends Controller
         return view('admin.rekap.biodata.index',compact('slug'));
     }
 
+    public function biodataLengkap(){
+        $slug = "biodataLengkap";
+        return view('admin.rekap.biodata.biodataLengkap',compact('slug'));
+    }
+
     /**
      * Show the form for creating a new resource.
      */
