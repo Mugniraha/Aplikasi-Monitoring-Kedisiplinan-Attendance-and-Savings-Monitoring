@@ -11,7 +11,8 @@ class settingAkunController extends Controller
      */
     public function index()
     {
-        //
+        $slug = "settingakun";
+        return view("admin.setting.index",compact("slug"));
     }
 
     /**

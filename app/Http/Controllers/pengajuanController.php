@@ -4,15 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class tabunganController extends Controller
+class pengajuanController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $slug = "tabungan";
-        return view("admin.tabungan.index",compact("slug"));
+        $slug = "pengajuan";
+        return view("admin.rekap.pengajuan.index",compact("slug"));
     }
 
     /**

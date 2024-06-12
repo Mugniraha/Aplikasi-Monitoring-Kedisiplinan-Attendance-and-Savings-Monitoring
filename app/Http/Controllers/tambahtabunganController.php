@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class tabunganController extends Controller
+class tambahtabunganController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -12,7 +12,7 @@ class tabunganController extends Controller
     public function index()
     {
         $slug = "tabungan";
-        return view("admin.tabungan.index",compact("slug"));
+        return view("admin.tabungan.tambahtabungan",compact("slug"));
     }
 
     /**

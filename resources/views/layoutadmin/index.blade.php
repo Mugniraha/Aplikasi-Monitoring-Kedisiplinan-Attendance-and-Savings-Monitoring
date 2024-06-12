@@ -71,7 +71,7 @@
                                     <div class="menu-item-collapse">
                                         <div class="min-h-0">
                                             <div class="">
-                                                <a class="ml-7 menu-item text-white hover:text-base hover:bg-indigo-950" href="{{('rekap')}}" >Biodata Siswa</a>
+                                                <a class="ml-7 menu-item text-white hover:text-base hover:bg-indigo-950" href="{{('tabungan')}}" >Biodata Siswa</a>
                                             </div>
                                             <div>
                                                 <a class="ml-7 menu-item text-white hover:text-base hover:bg-indigo-950" href="{{('pengajuan')}}">Pengajuan</a>
@@ -87,21 +87,49 @@
 
                                 <li class="menu-item hover:bg-indigo-900 text-white  focus:border-l-4 focus:border-blue-400 rounded-lg">
                                     <img src="{{asset('images/settings.png')}}" class="h-6" alt="">
-                                    <a class="text-white dark:text-green-200 hover:bg-indigo-900 group w-full ml-4 text-lg font-light" href="{{('pengumuman')}}">Setting Akun</a>
+                                    <a class="text-white dark:text-green-200 hover:bg-indigo-900 group w-full ml-4 text-lg font-light" href="{{('settingakun')}}">Setting Akun</a>
                                 </li>
 
                                 <li class="menu-item hover:bg-indigo-900 text-white  focus:border-l-4 focus:border-blue-400 rounded-lg">
                                     <img src="{{asset('images/logout.png')}}" class="h-6" alt="">
-                                    <a class="text-white dark:text-green-200 hover:bg-indigo-900 group w-full ml-5 text-lg font-light" href="{{('pengumuman')}}">Logout</a>
+                                    <label for="modal-2">                                    
+                                        <a class="text-white dark:text-green-200 hover:bg-indigo-900 group w-full ml-5 text-lg font-light">Logout</a>
+                                    </label>
+                                    
                                 </li>
 
                             </ul>
                         </section>
+<input class="modal-state" id="modal-2" type="checkbox" />
+<div class="modal w-screen">
+    <label class="modal-overlay" for="modal-2"></label>
+    <div class="bg-white rounded-lg shadow-xl max-w-md w-full p-6">
+        <!-- Modal Header -->
+        <div class="flex justify-between items-center border-b pb-3 mb-3">
+            <button class="text-gray-400 hover:text-gray-500">
+                <span class="sr-only">Close</span>
+                <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+        <div class="modal-content flex flex-col gap-5">
+            <h2 class="text-center text-red-700 font-semibold text-xl">Apakah anda ingin keluar dari situs ini?</h2>
+        </div>
+        <div class="bg-white-200 h-75 flex flex-col items-center justify-center rounded">
+            <div class="flex gap-3 mt-4">
+                <button class="btn btn-error">Iya</button>
+                <button class="btn">Tidak</button>
+            </div>
+        </div>
+    </div>
+</div>
 
                     </nav>
                 </section>
             </aside>
         </div>
+        
         <div class="sm:ml-64 bg-slate-500">
             <div class="sm:ml-64">
                 @yield('konten')
