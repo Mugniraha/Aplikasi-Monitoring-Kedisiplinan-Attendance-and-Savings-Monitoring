@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     @vite(['resources/css/app.css','resources/js/app.js'])
     <title>Document</title>
-</head>
+</head> 
 <body>
     <div class="flex flex-row sm:gap-10">
         <div class="sm:w-full sm:max-w-[18rem]">
