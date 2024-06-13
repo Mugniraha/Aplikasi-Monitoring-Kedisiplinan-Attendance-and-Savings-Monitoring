@@ -14,19 +14,20 @@ use App\Http\Controllers\tambahtabunganController;
 use App\Http\Controllers\izinController;
 use App\Http\Controllers\alfaController;
 use App\Http\Controllers\hadirController;
+use App\Http\Controllers\AuthController;
 
 
 // Route::get('/', function () {
 //     return view('index');
 // });
 
-Route::resource('home', homeAdminController::class);
-Route::resource('rekap',rekapBiodataController::class);
-Route::resource('pengumuman',pengumumanController::class);
-Route::get('biodataLengkap',[rekapBiodataController::class,'biodataLengkap']);
-Route::resource('login',loginController::class);
+// Route::resource('home', homeAdminController::class);
+Route::resource('rekap', rekapBiodataController::class);
+Route::resource('pengumuman', pengumumanController::class);
+Route::get('biodataLengkap', [rekapBiodataController::class, 'biodataLengkap']);
+// Route::resource('login',loginController::class);
 
-Route::get('/pengajuan', function(){
+Route::get('/pengajuan', function () {
     return view('admin.rekap.pengajuan.index');
 });
 
@@ -35,7 +36,16 @@ Route::get('/pengajuan', function(){
 
 
 
-
+Route::group(['middleware' => 'guest'], function () {
+    Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
+    Route::post('/register', [AuthController::class, 'registerPost'])->name('register');
+    Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+    Route::post('/login', [AuthController::class, 'loginPost'])->name('login');
+});
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/home', [homeAdminController::class, 'index']);
+    Route::delete('/logout', [AuthController::class, 'logout'])->name('logout');
+});
 
 
 

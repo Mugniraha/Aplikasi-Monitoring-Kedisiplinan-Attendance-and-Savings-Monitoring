@@ -11,8 +11,7 @@ class homeAdminController extends Controller
      */
     public function index()
     {
-        $slug = "home";
-        return view("admin.home.index",compact("slug"));
+        return view('admin.home.index');
     }
 
     /**
