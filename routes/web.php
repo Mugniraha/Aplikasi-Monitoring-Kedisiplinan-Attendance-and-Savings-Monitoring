@@ -44,9 +44,13 @@ Route::group(['middleware' => 'guest'], function () {
 });
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/home', [homeAdminController::class, 'index']);
-    Route::delete('/logout', [AuthController::class, 'logout'])->name('logout');
+    Route::delete('/logout', [logoutController::class, 'index'])->name('logout');
 });
 
+Route::middleware(['auth'])->group(function () {
+    Route::delete('/logout', [LogoutController::class, 'index'])->name('logout');
+    // Tambahkan rute lain yang membutuhkan autentikasi di sini
+});
 
 
 
@@ -73,4 +77,4 @@ Route::resource('tambahtabungan', tambahtabunganController::class);
 Route::resource('izin', izinController::class);
 Route::resource('alfa', alfaController::class);
 Route::resource('hadir', hadirController::class);
-Route::resource('logout', logoutController::class);
+// Route::resource('logout', logoutController::class);

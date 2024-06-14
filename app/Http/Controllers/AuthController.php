@@ -41,9 +41,5 @@ class AuthController extends Controller
         return back()->with('error', 'Kamu Bloon Email sama Password aja lupa');
     }
 
-    public function logout()
-    {
-        Auth::logout();
-        return redirect()->route('login');
-    }
+
 }

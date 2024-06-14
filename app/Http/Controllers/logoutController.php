@@ -3,16 +3,24 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class logoutController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    // public function index()
+    // {
+    //     $slug = "logout";
+    //     return view("admin..logout.logout",compact("slug"));
+    // }
+
+    public function index(Request $request)
     {
-        $slug = "logout";
-        return view("admin..logout.logout",compact("slug"));
+        Auth::logout();
+        return redirect()->route('login');
     }
 
     /**
