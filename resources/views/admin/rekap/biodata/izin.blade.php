@@ -6,29 +6,29 @@
         <img class="mr-10" src="{{asset('images/notification.png')}}" alt="">
     </div>
     <div class="ml-4 mt-4 p-3 rounded-l-md bg-teal-550">
-        <span class="text-white font-bold">PENGUMUMAN</span>
+        <span class="text-white font-bold">ABSENSI IZIN</span>
     </div>
 
-  
+
     <div class="container mx-auto p-4">
         <div class="flex justify-around mb-4">
-            <div class="bg-green-200 text-green-800 text-center p-8 rounded-lg shadow-lg w-64 h-32 transition transform hover:-translate-y-1 hover:scale-105 hover:bg-green-300">
+            <a href="{{'hadir'}}" class="bg-green-200 text-green-800 text-center p-8 rounded-lg shadow-lg w-64 h-32 transition transform hover:-translate-y-1 hover:scale-105 hover:bg-green-300">
                 <div class="text-xl font-bold">Hadir</div>
                 <div class="text-2xl">85%</div>
-            </div>
-            <div class="bg-yellow-200 text-yellow-800 text-center p-8 rounded-lg shadow-lg w-64 h-32 transition transform hover:-translate-y-1 hover:scale-105 hover:bg-yellow-300">
+            </a>
+            <a href="{{'izin'}}" class="bg-yellow-200 text-yellow-800 text-center p-8 rounded-lg shadow-lg w-64 h-32 transition transform hover:-translate-y-1 hover:scale-105 hover:bg-yellow-300">
                 <div class="text-xl font-bold">Izin</div>
                 <div class="text-2xl">10%</div>
-            </div>
-            <div class="bg-red-200 text-red-800 text-center p-8 rounded-lg shadow-lg w-64 h-32 transition transform hover:-translate-y-1 hover:scale-105 hover:bg-red-300">
+            </a>
+            <a href="{{'alfa'}}" class="bg-red-200 text-red-800 text-center p-8 rounded-lg shadow-lg w-64 h-32 transition transform hover:-translate-y-1 hover:scale-105 hover:bg-red-300">
                 <div class="text-xl font-bold">Alfa</div>
                 <div class="text-2xl">5%</div>
-            </div>
+            </a>
         </div>
 
 
-    
-    
+
+
         <!-- Dropdown Menus -->
         <div class="flex justify-end mb-4 mt-12">
             <div class="mr-4">
@@ -55,10 +55,10 @@
                     <option>2025</option>
                     <option>2026</option>
                 </select>
-            </div>     
+            </div>
         </div>
-        
-        
+
+
         <!-- Table -->
         <div class="w-full overflow-x-auto">
             <table class="min-w-full divide-y divide-gray-200">
@@ -85,7 +85,7 @@
                             </label>
                         </td>
                     </tr>
-                   
+
                     <tr>
                         <td class="px-6 py-4 whitespace-nowrap">2</td>
                         <td class="px-6 py-4 whitespace-nowrap">20-04-2024</td>
@@ -98,14 +98,14 @@
                             </label>
                         </td>
                     </tr>
-                  
+
                 </tbody>
             </table>
         </div>
     </div>
     </div>
 
-    
+
 </div>
 
 

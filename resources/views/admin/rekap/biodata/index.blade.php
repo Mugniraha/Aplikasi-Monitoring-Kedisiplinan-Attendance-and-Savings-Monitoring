@@ -20,7 +20,7 @@
             </select>
         </div>
         <div class="grid grid-cols-5 gap-4" >
-            <button type="button" class=" bg-white p-5 w-48 rounded-2xl border-2 border-gray-300 shadow-xl">
+            <a href="{{'biodataLengkap'}}" class=" bg-white p-5 w-48 rounded-2xl border-2 border-gray-300 shadow-xl">
                 <div class="flex justify-items-center ml-9">
                     <img class="object-cover flex h-20 w-20 rounded-full" src="{{asset('images/student.jpeg')}}" alt="">
                 </div>
@@ -31,127 +31,7 @@
                         <li class="font font-light">18</li>
                     </ul>
                 </div>
-            </button>
-            <div class=" bg-white p-5 w-48 rounded-2xl border-2 border-gray-300 shadow-xl">
-                <div class="flex justify-items-center ml-9">
-                    <img class="object-cover flex h-20 w-20 rounded-full" src="{{asset('images/student.jpeg')}}" alt="">
-                </div>
-                <div class="mt-5 text-center">
-                    <ul>
-                        <li class="font font-light">Mohamad Mughni R</li>
-                        <li class="font font-light">2203049</li>
-                        <li class="font font-light">18</li>
-                    </ul>
-                </div>
-            </div>
-            <div class=" bg-white p-5 w-48 rounded-2xl border-2 border-gray-300 shadow-xl">
-                <div class="flex justify-items-center ml-9">
-                    <img class="object-cover flex h-20 w-20 rounded-full" src="{{asset('images/student.jpeg')}}" alt="">
-                </div>
-                <div class="mt-5 text-center">
-                    <ul>
-                        <li class="font font-light">Mohamad Mughni R</li>
-                        <li class="font font-light">2203049</li>
-                        <li class="font font-light">18</li>
-                    </ul>
-                </div>
-            </div>
-            <div class=" bg-white p-5 w-48 rounded-2xl border-2 border-gray-300 shadow-xl">
-                <div class="flex justify-items-center ml-9">
-                    <img class="object-cover flex h-20 w-20 rounded-full" src="{{asset('images/student.jpeg')}}" alt="">
-                </div>
-                <div class="mt-5 text-center">
-                    <ul>
-                        <li class="font font-light">Mohamad Mughni R</li>
-                        <li class="font font-light">2203049</li>
-                        <li class="font font-light">18</li>
-                    </ul>
-                </div>
-            </div>
-            <div class=" bg-white p-5 w-48 rounded-2xl border-2 border-gray-300 shadow-xl">
-                <div class="flex justify-items-center ml-9">
-                    <img class="object-cover flex h-20 w-20 rounded-full" src="{{asset('images/student.jpeg')}}" alt="">
-                </div>
-                <div class="mt-5 text-center">
-                    <ul>
-                        <li class="font font-light">Mohamad Mughni R</li>
-                        <li class="font font-light">2203049</li>
-                        <li class="font font-light">18</li>
-                    </ul>
-                </div>
-            </div>
-            <div class=" bg-white p-5 w-48 rounded-2xl border-2 border-gray-300 shadow-xl">
-                <div class="flex justify-items-center ml-9">
-                    <img class="object-cover flex h-20 w-20 rounded-full" src="{{asset('images/student.jpeg')}}" alt="">
-                </div>
-                <div class="mt-5 text-center">
-                    <ul>
-                        <li class="font font-light">Mohamad Mughni R</li>
-                        <li class="font font-light">2203049</li>
-                        <li class="font font-light">18</li>
-                    </ul>
-                </div>
-            </div>
-            <div class=" bg-white p-5 w-48 rounded-2xl border-2 border-gray-300 shadow-xl">
-                <div class="flex justify-items-center ml-9">
-                    <img class="object-cover flex h-20 w-20 rounded-full" src="{{asset('images/student.jpeg')}}" alt="">
-                </div>
-                <div class="mt-5 text-center">
-                    <ul>
-                        <li class="font font-light">Mohamad Mughni R</li>
-                        <li class="font font-light">2203049</li>
-                        <li class="font font-light">18</li>
-                    </ul>
-                </div>
-            </div>
-            <div class=" bg-white p-5 w-48 rounded-2xl border-2 border-gray-300 shadow-xl">
-                <div class="flex justify-items-center ml-9">
-                    <img class="object-cover flex h-20 w-20 rounded-full" src="{{asset('images/student.jpeg')}}" alt="">
-                </div>
-                <div class="mt-5 text-center">
-                    <ul>
-                        <li class="font font-light">Mohamad Mughni R</li>
-                        <li class="font font-light">2203049</li>
-                        <li class="font font-light">18</li>
-                    </ul>
-                </div>
-            </div>
-            <div class=" bg-white p-5 w-48 rounded-2xl border-2 border-gray-300 shadow-xl">
-                <div class="flex justify-items-center ml-9">
-                    <img class="object-cover flex h-20 w-20 rounded-full" src="{{asset('images/student.jpeg')}}" alt="">
-                </div>
-                <div class="mt-5 text-center">
-                    <ul>
-                        <li class="font font-light">Mohamad Mughni R</li>
-                        <li class="font font-light">2203049</li>
-                        <li class="font font-light">18</li>
-                    </ul>
-                </div>
-            </div>
-            <div class=" bg-white p-5 w-48 rounded-2xl border-2 border-gray-300 shadow-xl">
-                <div class="flex justify-items-center ml-9">
-                    <img class="object-cover flex h-20 w-20 rounded-full" src="{{asset('images/student.jpeg')}}" alt="">
-                </div>
-                <div class="mt-5 text-center">
-                    <ul>
-                        <li class="font font-light">Mohamad Mughni R</li>
-                        <li class="font font-light">2203049</li>
-                        <li class="font font-light">18</li>
-                    </ul>
-                </div>
-            </div>
-            <div class=" bg-white p-5 w-48 rounded-2xl border-2 border-gray-300 shadow-xl">
-                <div class="flex justify-items-center ml-9">
-                    <img class="object-cover flex h-20 w-20 rounded-full" src="{{asset('images/student.jpeg')}}" alt="">
-                </div>
-                <div class="mt-5 text-center">
-                    <ul>
-                        <li class="font font-light">Mohamad Mughni R</li>
-                        <li class="font font-light">2203049</li>
-                        <li class="font font-light">18</li>
-                    </ul>
-                </div>
-            </div>
+            </a>
         </div>
     </div>
 </div>

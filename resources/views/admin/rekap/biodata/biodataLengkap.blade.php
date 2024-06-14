@@ -22,7 +22,7 @@
         </div>
     </div>
     <div class="mx-36 grid grid-cols-3 grid-flow-col-dense gap-5 mt-24">
-        <div class="bg-white border-2 border-gray-300 rounded-md  shadow-sm flex">
+        <a href="{{'hadir'}}" class="bg-white border-2 border-gray-300 rounded-md  shadow-sm flex">
             <div class="rounded-l px-5 h-44 py-12 flex" style="background-color: rgb(120, 202, 237, 0.3);">
                 <img class="h-20 my-auto mx-auto object-contain" src="{{asset('images/absensibiodata.png')}}" alt="">
             </div>
@@ -30,8 +30,8 @@
                 <span>Absensi</span>
                 <span>85%</span>
             </div>
-        </div>
-        <div class="bg-white border-2 border-gray-300 rounded-md  shadow-sm flex">
+        </a>
+        <a href="{{'tabungan'}}" class="bg-white border-2 border-gray-300 rounded-md  shadow-sm flex">
             <div class="rounded-l px-5 h-44 py-12 flex" style="background-color: rgb(159, 248, 168, 0.4);">
                 <img class="h-20 my-auto mx-auto object-contain" src="{{asset('images/tabunganbiodata.png')}}" alt="">
             </div>
@@ -39,15 +39,15 @@
                 <span>Tabungan</span>
                 <span>Rp.2000000</span>
             </div>
-        </div>
-        <div class="bg-white border-2 border-gray-300 rounded-md  shadow-sm flex">
+        </a>
+        <a class="bg-white border-2 border-gray-300 rounded-md  shadow-sm flex">
             <div class="rounded-l px-5 h-44 py-12 flex" style="background-color: rgb(243, 17, 17, 0.4);">
                 <img class="h-20 my-auto mx-auto object-contain" src="{{asset('images/profilbiodata.png')}}" alt="">
             </div>
             <div class="grid content-center text-xl font-sans font-normal mx-5">
                 <span>Profil Siswa</span>
             </div>
-        </div>
+        </a>
     </div>
 
 </div>
