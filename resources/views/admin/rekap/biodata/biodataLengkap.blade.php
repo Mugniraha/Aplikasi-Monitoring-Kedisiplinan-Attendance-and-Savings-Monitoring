@@ -9,17 +9,19 @@
         <span class="text-white font-bold">BIODATA</span>
     </div>
     <div class="p-5 grid grid-cols-1">
+        {{-- @foreach ($siswa as $item) --}}
         <div class="bg-white flex justify-center rounded-lg shadow-lg mx-auto mt-10 w-3/6 py-12 ">
             <div class="">
-                <img class="rounded-md object-cover w-36 h-36" src="{{ asset('images/student.jpeg') }}" alt="">
+                <img class="rounded-md object-cover w-36 h-36" src="{{ asset('storage/images/' . ($siswa->foto ?? '')) }}" alt="">
             </div>
             <div class="flex mx-10 my-auto text-lg font-light font-sans leading-snug">
-                Mohamad Mughni R <br>
-                2203049 <br>
-                1(satu) <br>
-                Laki laki
+                {{  $siswa->nama_siswa}} <br>
+                {{ $siswa->nis }} <br>
+                {{ $siswa->nisn }} <br>
+                {{-- Laki laki (belum diisi) --}}
             </div>
         </div>
+        {{-- @endforeach --}}
     </div>
     <div class="mx-36 grid grid-cols-3 grid-flow-col-dense gap-5 mt-24">
         <a href="{{'hadir'}}" class="bg-white border-2 border-gray-300 rounded-md  shadow-sm flex">
@@ -40,7 +42,7 @@
                 <span>Rp.2000000</span>
             </div>
         </a>
-        <a class="bg-white border-2 border-gray-300 rounded-md  shadow-sm flex">
+        <a class="bg-white border-2 border-gray-300 rounded-md  shadow-sm flex" href="{{  route('detailBiodata.show', $siswa->id_siswa) }}">
             <div class="rounded-l px-5 h-44 py-12 flex" style="background-color: rgb(243, 17, 17, 0.4);">
                 <img class="h-20 my-auto mx-auto object-contain" src="{{asset('images/profilbiodata.png')}}" alt="">
             </div>
