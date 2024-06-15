@@ -15,6 +15,10 @@ use App\Http\Controllers\izinController;
 use App\Http\Controllers\alfaController;
 use App\Http\Controllers\hadirController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\FaceRecognitionController;
+use App\Http\Controllers\ImageRegistrationController;
+use App\Http\Middleware\CorsMiddleware;
+
 
 
 // Route::get('/', function () {
@@ -26,6 +30,16 @@ Route::resource('rekap', rekapBiodataController::class);
 Route::resource('pengumuman', pengumumanController::class);
 Route::get('biodataLengkap', [rekapBiodataController::class, 'biodataLengkap']);
 // Route::resource('login',loginController::class);
+Route::get('/deteksi', [FaceRecognitionController::class, 'index']);
+Route::get('/labels', [FaceRecognitionController::class, 'getLabels']);
+Route::resource('/regist', ImageRegistrationController::class);
+
+Route::middleware(CorsMiddleware::class)->group(function () {
+    Route::post('/create-folder', [ImageRegistrationController::class, 'createFolder']);
+    Route::post('/save-images', [ImageRegistrationController::class, 'saveImages']);
+    Route::post('/upload', [FaceRecognitionController::class, 'uploadImage']);
+});
+
 
 Route::get('/pengajuan', function () {
     return view('admin.rekap.pengajuan.index');

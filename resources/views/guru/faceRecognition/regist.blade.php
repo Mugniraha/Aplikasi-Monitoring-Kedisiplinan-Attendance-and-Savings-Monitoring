@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background-color: teal;
+        }
+        canvas {
+            position: absolute;
+        }
+        video{
+            border-radius: 2%;
+            box-shadow:0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+        button{
+            background-color: #24314F;
+            border-radius: 8px;
+            padding: 13px;
+            color: whitesmoke;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: lighter;
+            margin-bottom: 1px;
+            border: none;
+        }
+        button:hover{
+            background-color: #2d3d62;
+            color: rgb(210, 210, 210);
+        }
+        input{
+            border: none;
+            font-size: 20px;
+            font-weight: bolder;
+            width: 300px;
+            padding: 10px;
+            outline:none;
+            border-radius: 2px;
+            margin-top: 15%;
+            margin-bottom: 10px;
+        }
+        a{
+            color: whitesmoke;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <video id="videoInput" width="720" height="550" muted controls></video>
+        <input type="text" id="inputNamaFolder" placeholder="Masukin nama kamu">
+    <button id="registerButton" >Daftarkan Wajah</button>
+    <button><a href="index.html">Batal</a></button>
+    <script defer src="./js/face-api.min.js"></script>
+    <script defer src="./js/takePict.js"></script>
+</body>
+</html>
