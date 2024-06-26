@@ -12,13 +12,11 @@
 
         <div class="bg-white shadow-smml-4 m-5 rounded-md p-5">
             <div class="mb-10 mt-5">
-                <select class="select">
-                    <option>Kelas 1</option>
-                    <option>Kelas 2</option>
-                    <option>Kelas 3</option>
-                    <option>Kelas 4</option>
-                    <option>Kelas 5</option>
-                    <option>Kelas 6</option>
+                <select class="select" id="select-kelas">
+                    <option value="">Pilih Kelas</option>
+                    @foreach ($angkatan as $tahun => $siswas)
+                        <option value="{{ $tahun }}">Kelas {{  0 + (date('Y') - $tahun) }}</option>
+                    @endforeach
                 </select>
                 <div class="absolute top-50 right-10 bg-green-500 text-white rounded-full p-3 shadow-md">
                     <a href="{{ 'tambahBiodata' }}">
@@ -29,11 +27,11 @@
                     </a>
                 </div>
             </div>
-            <div class="grid grid-cols-5 gap-4">
+            <div id="grid-siswa" class="grid grid-cols-5 gap-4" >
                 @foreach ($siswa as $datasiswa)
                 <a href="{{ url('biodataLengkap/' . $datasiswa->id_siswa) }}" class=" bg-white p-5 w-48 rounded-2xl border-2 border-gray-300 shadow-xl">
                     <div class="flex justify-items-center ml-9">
-                        <img class="object-cover flex h-20 w-20 rounded-full" src="{{ asset('images/student.jpeg') }}"
+                        <img class="object-cover flex h-20 w-20 rounded-full" src="{{ asset('./storage/images/' . ($datasiswa->foto ?? '')) }}"
                             alt="">
                     </div>
                     <div class="mt-5 text-center">
@@ -41,6 +39,7 @@
                             <li class="font font-light">{{  $datasiswa->nama_siswa }}</li>
                             <li class="font font-light">{{ $datasiswa->nis }}</li>
                             <li class="font font-light">{{ $datasiswa->nisn }}</li>
+                            <li class="angkatan" hidden>{{ $datasiswa->angkatan }}</li>
                         </ul>
                     </div>
                 </a>
@@ -48,3 +47,19 @@
             </div>
         </div>
     </div>
+
+    <script>
+        document.getElementById('select-kelas').addEventListener('change', function() {
+            const selectedClass = this.value;
+            const siswaItems = document.querySelectorAll('#grid-siswa a');
+
+            siswaItems.forEach(item => {
+                const siswaAngkatan = item.querySelector('.angkatan').textContent;
+                if (selectedClass === '' || siswaAngkatan === selectedClass) {
+                    item.style.display = '';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        });
+    </script>

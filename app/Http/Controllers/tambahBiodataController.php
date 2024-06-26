@@ -27,6 +27,7 @@ class tambahBiodataController extends Controller
             'nama_siswa' => 'required|string|max:100',
             'nisn' => 'required|integer',
             'nis' => 'required|integer',
+            'angkatan' => 'required|string|in:2018,2019,2020,2021,2022,2023',
             'email' => 'required|string|max:100',
             'password' => 'nullable|string|max:255',
         ]);

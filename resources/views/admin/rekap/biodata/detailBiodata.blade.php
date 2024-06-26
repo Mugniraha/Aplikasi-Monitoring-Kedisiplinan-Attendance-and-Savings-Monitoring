@@ -60,6 +60,10 @@
                     <a href="{{  route('editBiodata', $siswa->id_siswa) }}"
                         class="py-2 px-4 bg-teal-500 text-white rounded shadow-sm hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Edit Biodata</a>
                 </div>
+                <div class="flex justify-end">
+                    <a href="{{ url('biodataLengkap/' . $siswa->id_siswa) }}"
+                        class="py-2 px-4 bg-blue-500 text-white rounded shadow-sm hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Kembali</a>
+                </div>
             </form>
         </div>
     </div>

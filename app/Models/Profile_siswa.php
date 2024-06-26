@@ -24,5 +24,6 @@ class Profile_siswa extends Model
         'no_telpon',
         'email',
         'password',
+        'angkatan',
     ];
 }

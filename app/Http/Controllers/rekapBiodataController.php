@@ -19,7 +19,14 @@ class rekapBiodataController extends Controller
     public function index()
     {
         $siswa = Profile_siswa::all(); // Mengambil semua data siswa
-        return view('admin.rekap.biodata.index', compact('siswa'));
+
+        // pengelompokan sesuai angkatan
+        $angkatan = [];
+        foreach ($siswa as $data) {
+            $angkatan[$data->angkatan][] = $data;
+        }
+
+        return view('admin.rekap.biodata.index', compact('siswa', 'angkatan'));
     }
 
     public function biodataLengkap($id_siswa)
@@ -103,7 +110,6 @@ class rekapBiodataController extends Controller
             $siswa->foto = $nama_foto;
         }
         $siswa->update($request->except('foto'));
-        $siswa->update($request->all());
 
         return redirect()->route('detailBiodata.show', $siswa->id_siswa)->with('success', 'Biodata berhasil diperbaharui.');
     }
