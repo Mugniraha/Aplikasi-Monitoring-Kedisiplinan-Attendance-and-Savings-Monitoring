@@ -14,9 +14,9 @@
         <div class="bg-white p-8 rounded-lg shadow-md border border-gray-200 w-full max-w-4xl mx-auto mt-5">
             <form class="space-y-6" action="{{ route('updateBiodata', $siswa->id_siswa) }}" method="POST" enctype="multipart/form-data">
                 @csrf
-                @method('POST')
+                @method('PATCH')
                 <div>
-                    <img class="rounded-md object-cover w-36 h-36" src="{{ asset('images/' . ($siswa->foto ?? '')) }}" alt="">
+                    <img class="rounded-md object-cover w-36 h-36" src="{{ asset('/storage/images/' . ($siswa->foto ?? '')) }}" alt="">
                     <input type="file" id="foto" name="foto" class="mt-2 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer focus:outline-none">
                 </div>
                 <div>
@@ -62,6 +62,10 @@
                 <div class="flex justify-end">
                     <button type="submit"
                         class="py-2 px-4 bg-teal-500 text-white rounded shadow-sm hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Submit</button>
+                </div>
+                <div class="flex justify-end">
+                    <a href="{{  route('detailBiodata.show', $siswa->id_siswa) }}"
+                        class="py-2 px-4 bg-blue-500 text-white rounded shadow-sm hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Kembali</a>
                 </div>
             </form>
         </div>

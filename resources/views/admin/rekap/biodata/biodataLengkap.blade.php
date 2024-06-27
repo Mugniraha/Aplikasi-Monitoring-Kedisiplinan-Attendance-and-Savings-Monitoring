@@ -12,7 +12,7 @@
         {{-- @foreach ($siswa as $item) --}}
         <div class="bg-white flex justify-center rounded-lg shadow-lg mx-auto mt-10 w-3/6 py-12 ">
             <div class="">
-                <img class="rounded-md object-cover w-36 h-36" src="{{ asset('storage/images/' . ($siswa->foto ?? '')) }}" alt="">
+                <img class="rounded-md object-cover w-36 h-36" src="{{ asset('./storage/images/' . ($siswa->foto ?? '')) }}" alt="">
             </div>
             <div class="flex mx-10 my-auto text-lg font-light font-sans leading-snug">
                 {{  $siswa->nama_siswa}} <br>
