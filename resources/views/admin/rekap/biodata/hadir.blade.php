@@ -65,65 +65,95 @@
                         <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Check In</th>
                         <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Check Out</th>
                         <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Bukti</th>
                     </tr>
                 </thead>
-                <tbody class="bg-white divide-y divide-gray-200">
-                    <tr>
-                        <td class="px-6 py-4 whitespace-nowrap">1</td>
-                        <td class="px-6 py-4 whitespace-nowrap">20-04-2024</td>
-                        <td class="px-6 py-4 whitespace-nowrap">07.00</td>
-                        <td class="px-6 py-4 whitespace-nowrap">13.00</td>
-                        <td class="px-6 py-4 whitespace-nowrap">Berhasil</td>
-                        <td class="px-6 py-4 whitespace-nowrap">
-                            <label type="" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" for="modal-2">
-                                detail
-                            </label>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td class="px-6 py-4 whitespace-nowrap">2</td>
-                        <td class="px-6 py-4 whitespace-nowrap">20-04-2024</td>
-                        <td class="px-6 py-4 whitespace-nowrap">07.00</td>
-                        <td class="px-6 py-4 whitespace-nowrap">13.00</td>
-                        <td class="px-6 py-4 whitespace-nowrap">Berhasil</td>
-                        <td class="px-6 py-4 whitespace-nowrap">
-                            <label type="" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" for="modal-2">
-                                detail
-                            </label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="px-6 py-4 whitespace-nowrap">3</td>
-                        <td class="px-6 py-4 whitespace-nowrap">20-04-2024</td>
-                        <td class="px-6 py-4 whitespace-nowrap">07.00</td>
-                        <td class="px-6 py-4 whitespace-nowrap">13.00</td>
-                        <td class="px-6 py-4 whitespace-nowrap">Berhasil</td>
-                        <td class="px-6 py-4 whitespace-nowrap">
-                            <label type="" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" for="modal-2">
-                                detail
-                            </label>
-                        </td>
-                    </tr>
-
-
-                </tbody>
+                @php
+                    $grupAbsensi = $siswa->absensi->groupBy(function($item){
+                        return $item->tanggal . $item->id_siswa;
+                    })
+                @endphp
+                @foreach ($grupAbsensi as $absensi)
+                    <tbody class="bg-white divide-y divide-gray-200">
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap">{{ $loop->iteration }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap">{{ \Carbon\Carbon::parse($absensi[0]->tanggal)->format('d-m-Y') }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                @if ($absensi[0]->keterangan === 'Check in')
+                                    <div class="flex flex-col">
+                                        {{ \Carbon\Carbon::parse($absensi[0]->waktu)->format('H:i') }} WIB
+                                        {{-- <label type="" class="bg-blue-500 w-20 text-center hover:bg-blue-700 text-white py-2 px-4 rounded" for="modal-2-{{$absensi[0]->id_absensi}}">
+                                            <span class="text-center">Detail</span>
+                                        </label> --}}
+                                        <button id="open-modal-{{$absensi[0]->id_absensi}}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 w-2/5 rounded" onclick="openModal({{$absensi[0]->id_absensi}})">
+                                            Detail
+                                        </button>
+                                    </div>
+                                @else
+                                    On going
+                                @endif
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                @if (count($absensi) > 1) {{-- Jika terdapat data Check out --}}
+                                    @if ($absensi[1]->keterangan === 'Check out')
+                                        <div class="flex flex-col">
+                                            {{ \Carbon\Carbon::parse($absensi[1]->waktu)->format('H:i') }} WIB
+                                            <button id="open-modal-{{$absensi[1]->id_absensi}}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 w-2/5 rounded" onclick="openModal({{$absensi[1]->id_absensi}})">
+                                                Detail
+                                            </button>
+                                            {{-- <label type="" class="bg-blue-500 w-20 hover:bg-blue-700 text-white py-2 text-center px-4 rounded" for="modal-3-{{$absensi[1]->id_absensi}}">
+                                                <span class="text-center">Detail</span>
+                                            </label> --}}
+                                        </div>
+                                    @else
+                                        <div class="">
+                                            On going
+                                        </div>
+                                    @endif
+                                @else
+                                    On going
+                                @endif
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                @if ($absensi[0]->keterangan === 'Check in' && isset($absensi[1]) && $absensi[1]->keterangan === 'Check out')
+                                    Berhasil
+                                @else
+                                    On going
+                                @endif
+                            </td>
+                        </tr>
+                    </tbody>
+                @endforeach
             </table>
         </div>
     </div>
-    </div>
-
-
 </div>
 
+{{-- @foreach ($siswa->absensi as $absensi)
+<input class="modal-state hidden" id="modal-2-{{$absensi->id_absensi}}" type="checkbox" />
+<div class="modal w-screen ">
+	<label class="modal-overlay" for="modal-2-{{$absensi->id_absensi}}"></label>
+        <div class="bg-white rounded-lg shadow-xl max-w-md w-full p-6">
+            <!-- Modal Header -->
+            <div class="flex justify-between items-center border-b pb-3 mb-3">
+                <h3 class="text-lg font-medium text-gray-900">Foto Bukti</h3>
+                <button class="text-gray-400 hover:text-gray-500 cursor-pointer">
+                    <span class="sr-only">Close</span>
+                    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <div class=" h-auto flex items-center justify-center rounded">
+                <img src="{{asset('storage/uploads/'. $absensi->bukti_absensi)}}" alt="">
+            </div>
+        </div>
+</div>
+@endforeach
 
-<label class="btn btn-primary" for="modal-2">Open Modal</label>
-
-<input class="modal-state" id="modal-2" type="checkbox" />
+@foreach ($siswa->absensi as $absensi)
+<input class="modal-state" id="modal-3-{{$absensi->id_absensi}}" type="checkbox" />
 <div class="modal w-screen">
-	<label class="modal-overlay" for="modal-2"></label>
-
+	<label class="modal-overlay" for="modal-3-{{$absensi->id_absensi}}"></label>
         <div class="bg-white rounded-lg shadow-xl max-w-md w-full p-6">
             <!-- Modal Header -->
             <div class="flex justify-between items-center border-b pb-3 mb-3">
@@ -135,13 +165,78 @@
                     </svg>
                 </button>
             </div>
-            <!-- Modal Content -->
-            <div class="bg-gray-200 h-48 flex items-center justify-center rounded">
-                <!-- Placeholder for image -->
-                <span class="text-gray-500">Image placeholder</span>
+            <div class=" h-56 flex items-center justify-center rounded">
+                <img src="{{asset('storage/uploads/'. $absensi->bukti_absensi)}}" alt="">
             </div>
         </div>
-	</div>
 </div>
+@endforeach --}}
 
 
+@foreach ($siswa->absensi as $absensi)
+    <div id="modal-{{$absensi->id_absensi}}" class="fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center hidden">
+        <div class="bg-white rounded-lg p-8 max-w-md w-full">
+            <div class="flex justify-between items-center border-b pb-3 mb-3">
+                <h3 class="text-lg font-medium text-gray-900">Modal Title</h3>
+                <button class="text-gray-400 hover:text-gray-500" onclick="closeModal({{$absensi->id_absensi}})">
+                    <span class="sr-only">Close</span>
+                    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-content">
+                <img src="{{asset('storage/uploads/'. $absensi->bukti_absensi)}}" alt="">
+            </div>
+        </div>
+    </div>
+@endforeach
+
+@foreach ($siswa->absensi as $absensi)
+    <div id="modal-{{$absensi->id_absensi}}" class="fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center hidden">
+        <div class="bg-white rounded-lg p-8 max-w-md w-full">
+            <div class="flex justify-between items-center border-b pb-3 mb-3">
+                <h3 class="text-lg font-medium text-gray-900">Modal Title</h3>
+                <button class="text-gray-400 hover:text-gray-500" onclick="closeModal({{$absensi->id_absensi}})">
+                    <span class="sr-only">Close</span>
+                    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-content">
+                <img src="{{asset('storage/uploads/'. $absensi->bukti_absensi)}}" alt="">
+            </div>
+        </div>
+    </div>
+@endforeach
+
+
+<script>
+    // Ambil elemen-elemen yang diperlukan
+    const openModalButton = document.getElementById('open-modal-{{$absensi->id_absensi}}');
+    const closeModalButton = document.getElementById('close-modal');
+    const modal = document.getElementById('modal-{{$absensi->id_absensi}}');
+
+    // Tambahkan event listener untuk tombol open modal
+    openModalButton.addEventListener('click', function() {
+    modal.classList.remove('hidden'); // Hapus kelas 'hidden' untuk menampilkan modal
+    });
+
+    // Tambahkan event listener untuk tombol close modal
+    closeModalButton.addEventListener('click', function() {
+    modal.classList.add('hidden'); // Tambahkan kembali kelas 'hidden' untuk menyembunyikan modal
+    });
+
+        function openModal(id) {
+        const modal = document.getElementById('modal-' + id);
+        modal.classList.remove('hidden');
+    }
+
+    // Function untuk menutup modal
+    function closeModal(id) {
+        const modal = document.getElementById('modal-' + id);
+        modal.classList.add('hidden');
+    }
+
+</script>

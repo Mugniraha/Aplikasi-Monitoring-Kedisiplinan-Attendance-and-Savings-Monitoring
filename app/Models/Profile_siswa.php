@@ -25,4 +25,9 @@ class Profile_siswa extends Model
         'email',
         'password',
     ];
+
+    public function absensi()
+    {
+        return $this->hasMany(Absensi::class, 'id_siswa', 'id_siswa');
+    }
 }

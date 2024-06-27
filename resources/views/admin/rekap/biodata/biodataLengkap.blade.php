@@ -24,7 +24,7 @@
         {{-- @endforeach --}}
     </div>
     <div class="mx-36 grid grid-cols-3 grid-flow-col-dense gap-5 mt-24">
-        <a href="{{'hadir'}}" class="bg-white border-2 border-gray-300 rounded-md  shadow-sm flex">
+        <a href="{{route('hadir',['id_siswa' => $siswa->id_siswa])}}" class="bg-white border-2 border-gray-300 rounded-md  shadow-sm flex">
             <div class="rounded-l px-5 h-44 py-12 flex" style="background-color: rgb(120, 202, 237, 0.3);">
                 <img class="h-20 my-auto mx-auto object-contain" src="{{asset('images/absensibiodata.png')}}" alt="">
             </div>
