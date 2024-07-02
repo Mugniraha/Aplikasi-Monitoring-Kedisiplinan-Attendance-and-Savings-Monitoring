@@ -36,6 +36,7 @@ class AuthController extends Controller
             'password' => $request->password,
         ];
         if (Auth::attempt($credetials)) {
+            $request->session()->regenerate();
             return redirect('/home')->with('success', 'Login Successfully');
         }
         return back()->with('error', 'Kamu Bloon Email sama Password aja lupa');

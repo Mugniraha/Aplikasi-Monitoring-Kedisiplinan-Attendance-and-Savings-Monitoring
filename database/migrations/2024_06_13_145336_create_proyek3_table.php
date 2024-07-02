@@ -3,6 +3,9 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Artisan;
+use Database\Seeders\UsersTableSeeder;
+use Database\Seeders\SiswaTableSeeder;
 
 return new class extends Migration
 {
@@ -35,8 +38,7 @@ return new class extends Migration
         Schema::create('tabungan', function (Blueprint $table) {
             $table->id('id_tabungan');
             $table->float('nominal');
-            $table->float('saldo');
-            $table->date('tanggal');
+            // $table->date('tanggal');
             $table->timestamps();
         });
 
@@ -125,6 +127,11 @@ return new class extends Migration
             $table->string('bukti_foto', 255);
             $table->timestamps();
         });
+
+        // Artisan::call('db:seed', [
+        //     '--class' => 'UsersTableSeeder',
+        //     '--class' => 'SiswaTableSeeder',
+        // ]);
     }
 
     /**

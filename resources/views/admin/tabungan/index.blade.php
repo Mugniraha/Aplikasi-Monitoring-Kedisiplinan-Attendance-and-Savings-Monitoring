@@ -1,22 +1,36 @@
 @extends('layoutadmin.index')
 @section('konten')
 
+
 <div id="content" class="sm:ml-64 bg-slate-100">
     <div class="p-2 h-14 flex justify-end" style="background-color: rgb(58, 158, 157, 0.6);">
         <img class="mr-10" src="{{asset('images/notification.png')}}" alt="">
     </div>
     <div class="ml-4 mt-4 p-3 rounded-l-md bg-teal-550">
-        <span class="text-white font-bold">PENGUMUMAN</span>
+        <span class="text-white font-bold">TABUNGAN</span>
     </div>
 
     <div class="p-8">
-    <button class="absolute top-32 right-4 bg-green-500 text-white rounded-full p-3 shadow-md">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
-        </svg>
-    </button>
-    
-    
+        <a href="{{ route('tabungan.create') }}" class="absolute top-32 right-4 bg-green-500 text-white rounded-full p-3 shadow-md">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+            </svg>
+        </a>
+
+
+        <div class="w-40">
+            <select name="kelas" id="kelas" class="w-full p-2 border border-gray-300 rounded-lg">
+                <option value="">Pilih Kelas</option>
+                <option value="1">Kelas 1</option>
+                <option value="2">Kelas 2</option>
+                <option value="3">Kelas 3</option>
+                <option value="4">Kelas 4</option>
+                <option value="5">Kelas 5</option>
+                <option value="6">Kelas 6</option>
+            </select>
+        </div>
+
+
         <!-- Dropdown Menus -->
         <div class="flex justify-end mb-4 mt-12">
             <div class="mr-4">
@@ -71,10 +85,10 @@
                     <option>30</option>
                     <option>31</option>
                 </select>
-            </div>     
+            </div>
         </div>
-        
-        
+
+
         <!-- Table -->
         <div class="w-full overflow-x-auto">
             <table class="min-w-full divide-y divide-gray-200">
@@ -93,26 +107,25 @@
                     </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
-                    <tr>
-                        <td class="px-6 py-4 whitespace-nowrap">1</td>
-                        <td class="px-6 py-4 whitespace-nowrap">Andini aprilian</td>
-                        <td class="px-6 py-4 whitespace-nowrap">283671756</td>
-                        <td class="px-6 py-4 whitespace-nowrap">20-10-2023</td>
-                        <td class="px-6 py-4 whitespace-nowrap">50000</td>
-                        <td class="px-6 py-4 whitespace-nowrap">Berhasil</td>
-                        <td class="px-6 py-4 whitespace-nowrap">50000</td>
-                        <td class="px-6 py-4 whitespace-nowrap">-</td>
-                        <td class="px-6 py-4 whitespace-nowrap">50000</td>
-                        <td class="px-6 py-4 whitespace-nowrap">
-                            <label type="" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" for="modal-2">
-                                detail
-                            </label>
-                        </td>
-                        
-                        
-            
-                    </tr>
-                    <tr>
+                    @foreach ($tabungans as $index => $tabungan)
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap">{{ $index + 1 }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap">{{ $tabungan->profile_siswa->nama_siswa }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap">{{ $tabungan->profile_siswa->nisn }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap">{{ $tabungan->updated_at }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap">{{ $tabungan->nominal }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap">Berhasil</td>
+                            <td class="px-6 py-4 whitespace-nowrap">{{ $tabungan->nominal }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap">{{ $tabungan->nominal }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap">{{ $tabungan->nominal }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <a href="{{ route('tabungan.show', $tabungan->id_tabungan) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                    Detail
+                                </a>
+                            </td>
+                        </tr>
+                    @endforeach
+                    {{-- <tr>
                         <td class="px-6 py-4 whitespace-nowrap">2</td>
                         <td class="px-6 py-4 whitespace-nowrap">Mardhiyatus Sholihah</td>
                         <td class="px-6 py-4 whitespace-nowrap">283671756</td>
@@ -192,7 +205,7 @@
                                 detail
                             </button>
                         </td>
-                    </tr>
+                    </tr> --}}
                     <tr>
                         <td class="px-6 py-4 whitespace-nowrap"></td>
                         <td class="px-6 py-4 whitespace-nowrap"></td>
@@ -202,16 +215,16 @@
                         <td class="px-6 py-4 whitespace-nowrap"></td>
                         <td class="px-6 py-4 whitespace-nowrap"></td>
                         <td class="px-6 py-4 whitespace-nowrap"> :</td>
-                        <td class="px-6 py-4 whitespace-nowrap">230000</td>
+                        <td class="px-6 py-4 whitespace-nowrap">{{ $tabungans->sum('saldo') }}</td>
                     </tr>
-                 
+
                 </tbody>
             </table>
         </div>
     </div>
     </div>
 
-    
+
 </div>
 
 

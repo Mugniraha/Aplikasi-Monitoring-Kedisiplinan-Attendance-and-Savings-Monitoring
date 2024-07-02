@@ -58,7 +58,7 @@
                                             <div class="min-h-0">
                                                 <div class="">
                                                     <a class="ml-9 menu-item text-white hover:text-base hover:bg-indigo-950"
-                                                        href="{{ 'rekap' }}">Biodata Siswa</a>
+                                                        href="{{ route('rekap.index') }}">Biodata Siswa</a>
                                                 </div>
                                                 <div>
                                                     <a class="ml-9 menu-item text-white hover:text-base hover:bg-indigo-950"
@@ -91,7 +91,7 @@
                                             <div class="min-h-0">
                                                 <div class="">
                                                     <a class="ml-7 menu-item text-white hover:text-base hover:bg-indigo-950"
-                                                        href="{{ 'tabungan' }}">Biodata Siswa</a>
+                                                        href="{{ route('tabungan.index') }}">Biodata Siswa</a>
                                                 </div>
                                                 <div>
                                                     <a class="ml-7 menu-item text-white hover:text-base hover:bg-indigo-950"

@@ -26,4 +26,10 @@ class Profile_siswa extends Model
         'password',
         'angkatan',
     ];
+
+    // Relasi dengan model Tabungan
+    public function tabungans()
+    {
+        return $this->hasMany(Tabungan::class, 'id_siswa', 'id_siswa');
+    }
 }

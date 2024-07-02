@@ -12,51 +12,51 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('pengajuan_pengambilan_tabungan', function (Blueprint $table) {
-            $table->foreignId('id_tabungan')->constrained('tabungan','id_tabungan');
+            $table->foreignId('id_tabungan')->constrained('tabungan', 'id_tabungan');
         });
 
         Schema::table('tabungan', function (Blueprint $table) {
-            $table->foreignId('id_siswa')->constrained('profile_siswa','id_siswa');
-            $table->foreignId('id_admin')->constrained('admin','id_admin');
+            $table->foreignId('id_siswa')->constrained('profile_siswa', 'id_siswa');
+            $table->foreignId('id_admin')->constrained('users', 'id');
         });
 
         Schema::table('kesalahan_input_tabungan', function (Blueprint $table) {
-            $table->foreignId('id_tabungan')->constrained('tabungan','id_tabungan');
+            $table->foreignId('id_tabungan')->constrained('tabungan', 'id_tabungan');
         });
 
         Schema::table('pengajuan_ketidakhadiran', function (Blueprint $table) {
-            $table->foreignId('id_absensi')->constrained('absensi','id_absensi');
+            $table->foreignId('id_absensi')->constrained('absensi', 'id_absensi');
         });
 
         Schema::table('absensi', function (Blueprint $table) {
-            $table->foreignId('id_siswa')->constrained('profile_siswa','id_siswa');
-            $table->foreignId('id_admin')->constrained('admin','id_admin');
+            $table->foreignId('id_siswa')->constrained('profile_siswa', 'id_siswa');
+            $table->foreignId('id_admin')->constrained('users', 'id');
         });
 
         Schema::table('wali_kelas', function (Blueprint $table) {
-            $table->foreignId('id_absensi')->constrained('absensi','id_absensi');
+            $table->foreignId('id_absensi')->constrained('absensi', 'id_absensi');
         });
 
         Schema::table('pengajuan_kode_akses', function (Blueprint $table) {
-            $table->foreignId('id_siswa')->constrained('profile_siswa','id_siswa');
+            $table->foreignId('id_siswa')->constrained('profile_siswa', 'id_siswa');
         });
 
         Schema::table('kode_akses', function (Blueprint $table) {
-            $table->foreignId('id_siswa')->constrained('profile_siswa','id_siswa');
+            $table->foreignId('id_siswa')->constrained('profile_siswa', 'id_siswa');
         });
 
         Schema::table('pengumuman', function (Blueprint $table) {
-            $table->foreignId('id_admin')->constrained('admin','id_admin');
-            $table->foreignId('id_siswa')->constrained('profile_siswa','id_siswa');
+            $table->foreignId('id_admin')->constrained('users', 'id');
+            $table->foreignId('id_siswa')->constrained('profile_siswa', 'id_siswa');
         });
 
         Schema::table('notifikasi', function (Blueprint $table) {
-            $table->foreignId('id_siswa')->constrained('profile_siswa','id_siswa');
-            $table->foreignId('id_admin')->constrained('admin','id_admin');
+            $table->foreignId('id_siswa')->constrained('profile_siswa', 'id_siswa');
+            $table->foreignId('id_admin')->constrained('users', 'id');
         });
 
         Schema::table('perubahan_biodata', function (Blueprint $table) {
-            $table->foreignId('id_siswa')->constrained('profile_siswa','id_siswa');
+            $table->foreignId('id_siswa')->constrained('profile_siswa', 'id_siswa');
         });
     }
 

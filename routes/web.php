@@ -15,15 +15,12 @@ use App\Http\Controllers\izinController;
 use App\Http\Controllers\alfaController;
 use App\Http\Controllers\hadirController;
 use App\Http\Controllers\AuthController;
-<<<<<<< HEAD
 use App\Http\Controllers\FaceRecognitionController;
 use App\Http\Controllers\ImageRegistrationController;
 use App\Http\Middleware\CorsMiddleware;
 
-=======
 use App\Http\Controllers\tambahBiodataController;
 use App\Http\Controllers\siswaController;
->>>>>>> 09ea5f027d9d5f74cabc6999d07c29fad3170629
 
 
 // Route::get('/', function () {
@@ -32,6 +29,7 @@ use App\Http\Controllers\siswaController;
 
 // Route::resource('home', homeAdminController::class);
 Route::resource('rekap', rekapBiodataController::class);
+Route::get('rekap', [rekapBiodataController::class, 'index'])->name('rekap.index');
 Route::resource('pengumuman', pengumumanController::class);
 Route::get('/biodataLengkap', [rekapBiodataController::class, 'index']);
 Route::get('/biodataLengkap/{id_siswa}', [rekapBiodataController::class, 'biodataLengkap'])->name('biodataLengkap.show');
@@ -92,7 +90,7 @@ Route::middleware(['auth'])->group(function () {
 
 
 //route andin
-Route::resource('tabungan', tabunganController::class);
+// Route::resource('tabungan', tabunganController::class);
 Route::resource('pengajuan', pengajuanController::class);
 Route::resource('pengeluaran', pengeluaranController::class);
 Route::resource('tambahtabungan', tambahtabunganController::class);
@@ -123,3 +121,8 @@ Route::put('tambahBiodata/{id}', [tambahBiodataController::class, 'update'])->na
 Route::resource('settingakun', settingAkunController::class);
 // Route::get('/settingakun/{id}/edit', [settingAkunController::class, 'edit'])->name('settingakun.edit');
 // Route::put('/settingakun/{id}', [settingAkunController::class, 'update'])->name('settingakun.update');
+
+Route::get('/tabungan', [tabunganController::class, 'index'])->name('tabungan.index');
+Route::get('/tabungan/create', [tabunganController::class, 'create'])->name('tabungan.create');
+Route::post('/tabungan', [tabunganController::class, 'store'])->name('tabungan.store');
+Route::get('/tabungan/{id_tabungan}', [tabunganController::class, 'show'])->name('tabungan.show');
