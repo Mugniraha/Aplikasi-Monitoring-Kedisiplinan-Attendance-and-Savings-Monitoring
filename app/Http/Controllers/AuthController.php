@@ -37,7 +37,12 @@ class AuthController extends Controller
         ];
         if (Auth::attempt($credetials)) {
             $request->session()->regenerate();
+            if (strpos($request->email, 'guru') !== false){
+                return redirect('/siswaAbsen')->with('success', 'Berhasil Login');
+            }
+            else {
             return redirect('/home')->with('success', 'Login Successfully');
+            }
         }
         return back()->with('error', 'Kamu Bloon Email sama Password aja lupa');
     }

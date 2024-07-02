@@ -118,16 +118,19 @@
                                     <li
                                         class="menu-item hover:bg-indigo-900 text-white  focus:border-l-4 focus:border-blue-400 rounded-lg">
                                         <img src="{{ asset('images/logout.png') }}" class="h-6" alt="">
-                                        <label for="modal-2">
+                                        {{-- <label for="modal-2">
                                             <a
                                                 class="text-white dark:text-green-200 hover:bg-indigo-900 group w-full ml-5 text-lg font-light">Logout</a>
-                                        </label>
+                                        </label> --}}
+                                        <a id="openModalButton" class="text-white dark:text-green-200 hover:bg-indigo-900 group w-full ml-4 text-lg font-light" onclick="openModal()">
+                                            Logout
+                                        </a>
 
                                     </li>
 
                                 </ul>
                             </section>
-                            <input class="modal-state" id="modal-2" type="checkbox" />
+                            {{-- <input class="modal-state" id="modal-2" type="checkbox" />
                             <div class="modal w-screen">
                                 <label class="modal-overlay" for="modal-2"></label>
                                 <div class="bg-white rounded-lg shadow-xl max-w-md w-full p-6">
@@ -159,7 +162,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
 
                         </nav>
                     </section>
@@ -167,6 +170,28 @@
         </div>
 
         <div class="sm:ml-64 bg-slate-500">
+            <div id="modal" class="fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center hidden">
+                <div class="bg-white rounded-lg p-8 max-w-md w-full">
+                    <div class="flex justify-between items-center border-b pb-3 mb-3">
+                    </div>
+                    <div class="modal-content">
+                        <h2 class="text-center text-red-700 font-semibold text-xl">Apakah anda ingin
+                            keluar dari situs ini?</h2>
+                    </div>
+                    <div class="bg-white-200 h-75 flex flex-col items-center justify-center rounded">
+                        <div class="flex gap-3">
+                            <form action="{{ route('logout') }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn btn-error btn-block" type="submit">Iya</button>
+                            </form>
+
+                            <button class="btn btn-block" type="button"
+                                onclick="closeModal()">Tidak</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="sm:ml-64">
                 @yield('konten')
             </div>
@@ -176,7 +201,19 @@
     {{-- <div id="content" class="sm:ml-64 bg-slate-100">
         @yield('konten')
     </div> --}}
+
     <script src="js/app.js"></script>
+    <script>
+        function openModal(){
+            document.getElementById('modal').classList.remove('hidden');
+        }
+        function closeModal(){
+            document.getElementById('modal').classList.add('hidden');
+        }
+
+        document.getElementById('openModalButton').addEventListener('click', openModal);
+        document.getElementById('closeModalButton').addEventListener('click', closeModal);
+    </script>
 </body>
 
 </html>

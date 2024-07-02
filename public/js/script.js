@@ -1,6 +1,8 @@
 // script.js
 const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 const video = document.getElementById('videoInput');
+const detectionCounts = {};
+const uploadCounts = {};
 
 Promise.all([
     faceapi.nets.faceRecognitionNet.loadFromUri('/models'),
@@ -107,40 +109,44 @@ async function loadLabeledImages() {
 
 
 function captureAndSendImage(label, detectedImage) {
-    const detectionCanvas = document.createElement('canvas');
-    detectionCanvas.width = detectedImage.width;
-    detectionCanvas.height = detectedImage.height;
-    const context = detectionCanvas.getContext('2d', { willReadFrequently: true });
-    context.drawImage(detectedImage, 0, 0);
-    const dataUrl = detectionCanvas.toDataURL('image/jpeg');
+    if (!detectionCounts[label]) {
+        detectionCounts[label] = 0;
+    }
+    if (!uploadCounts[label]) {
+        uploadCounts[label] = 0;
+    }
 
-    fetch(dataUrl)
-        .then(res => res.blob())
-        .then(blob => {
-            const formData = new FormData();
-            formData.append('detectedImage', blob, `${label}.jpg`);
-            formData.append('label', label); // Label tetap dikirim jika diperlukan di backend
+    detectionCounts[label]++;
 
-            fetch('http://127.0.0.1:8000/upload', { // Pastikan URL ini benar
-                method: 'POST',
-                headers: {
-                    'X-CSRF-TOKEN': token
-                },
-                body: formData
-            })
-            .then(response => {
-                if (!response.ok) {
-                    return response.text().then(text => { throw new Error(text) });
-                }
-                return response.json();
-            })
-            .then(data => {
-                console.log('Success:', data);
-                // Tampilkan path atau lakukan tindakan lain yang diperlukan
-                alert(`Gambar berhasil diunggah: ${data.path}`);
-            })
-            .catch((error) => {
-                console.error('Error:', error);
+    if (detectionCounts[label] === 20 && uploadCounts[label] < 3) {
+        const detectionCanvas = document.createElement('canvas');
+        detectionCanvas.width = detectedImage.width;
+        detectionCanvas.height = detectedImage.height;
+        const context = detectionCanvas.getContext('2d', { willReadFrequently: true });
+        context.drawImage(detectedImage, 0, 0);
+        const dataUrl = detectionCanvas.toDataURL('image/jpeg');
+        fetch(dataUrl)
+            .then(res => res.blob())
+            .then(blob => {
+                const formData = new FormData();
+                formData.append('detectedImage', blob, `${label}.jpg`);
+                formData.append('label', label);
+
+                fetch('http://127.0.0.1:8000/upload', {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': token
+                    },
+                    body: formData
+                }).then(response => response.json())
+                .then(data => {
+                    console.log('Success:', data);
+                    uploadCounts[label]++;
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
             });
-        });
+        detectionCounts[label] = 0;
+    }
 }

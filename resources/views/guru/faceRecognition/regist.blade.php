@@ -46,7 +46,7 @@
             padding: 10px;
             outline:none;
             border-radius: 2px;
-            margin-top: 15%;
+            margin-top: 1%;
             margin-bottom: 10px;
         }
         a{
@@ -56,11 +56,11 @@
     </style>
 </head>
 <body>
+    <h1>Registrasi Wajah untuk {{ $datasiswa->nama_siswa }}</h1>
     <video id="videoInput" width="720" height="550" muted controls></video>
-        <input type="text" id="inputNamaFolder" placeholder="Masukin nama kamu">
-    <button id="registerButton" >Daftarkan Wajah</button>
+    <input type="text" id="inputNamaFolder" placeholder="Masukkan nama kamu" value="{{ $datasiswa->nama_siswa }}" disabled>
+    <button id="registerButton" data-nama-siswa="{{ $datasiswa->nama_siswa }}">Daftarkan Wajah</button>
     <button><a href="index.html">Batal</a></button>
-    <script defer src="./js/face-api.min.js"></script>
-    <script defer src="./js/takePict.js"></script>
+    <script defer src="{{ asset('js/takePict.js') }}"></script>
 </body>
 </html>

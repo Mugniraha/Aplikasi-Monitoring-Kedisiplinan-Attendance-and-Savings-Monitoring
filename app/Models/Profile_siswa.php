@@ -32,4 +32,8 @@ class Profile_siswa extends Model
     {
         return $this->hasMany(Tabungan::class, 'id_siswa', 'id_siswa');
     }
+    public function absensi()
+    {
+        return $this->hasMany(Absensi::class, 'id_siswa', 'id_siswa');
+    }
 }

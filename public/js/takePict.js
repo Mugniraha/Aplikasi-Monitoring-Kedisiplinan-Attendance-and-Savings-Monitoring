@@ -18,10 +18,22 @@ navigator.mediaDevices.getUserMedia({ video: true })
 
 registerButton.addEventListener('click', handleRegisterButtonClick);
 
-async function handleRegisterButtonClick() {
+async function handleRegisterButtonClick(event) {
     if (!isRegistering) {
         isRegistering = true;
         images = [];
+
+        // Ambil nama siswa dari data-nama-siswa pada tombol yang diklik
+        const namaSiswa = event.target.getAttribute('data-nama-siswa');
+        if (!namaSiswa) {
+            console.error('Nama siswa tidak tersedia!');
+            isRegistering = false;
+            return;
+        }
+
+        // Set nilai inputNamaFolder dengan nama siswa
+        inputNamaFolder.value = namaSiswa;
+
         createNewFolderAndCaptureImages();
     }
 }
@@ -104,7 +116,7 @@ function sendImagePart(partImages, partNumber, totalParts) {
     fetch(`/save-images?folderName=${currentFolderName}`, {
         method: 'POST',
         headers: {
-            'X-CSRF-TOKEN': token 
+            'X-CSRF-TOKEN': token
         },
         body: formData
     })

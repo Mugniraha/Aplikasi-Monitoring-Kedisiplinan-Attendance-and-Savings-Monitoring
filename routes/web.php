@@ -18,9 +18,17 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\FaceRecognitionController;
 use App\Http\Controllers\ImageRegistrationController;
 use App\Http\Middleware\CorsMiddleware;
+<<<<<<< HEAD
 
 use App\Http\Controllers\tambahBiodataController;
 use App\Http\Controllers\siswaController;
+=======
+use App\Http\Controllers\tambahBiodataController;
+use App\Http\Controllers\siswaController;
+use App\Http\Controllers\guruController;
+use App\Http\Controllers\guruAbsenController;
+use App\Http\Controllers\detailAbsenPerSiswaController;
+>>>>>>> 0eb75920ac76656fa1b04b97c44b5c76cc2af1c6
 
 
 // Route::get('/', function () {
@@ -40,6 +48,14 @@ Route::patch('/updateBiodata/{id_siswa}', [rekapBiodataController::class, 'updat
 Route::get('/deteksi', [FaceRecognitionController::class, 'index']);
 Route::get('/labels', [FaceRecognitionController::class, 'getLabels']);
 Route::resource('/regist', ImageRegistrationController::class);
+Route::get('/regist/{id}', [ImageRegistrationController::class, 'show'])->name('regist');
+Route::resource('/detailAbsen',guruAbsenController::class);
+Route::resource('/detailAbsenPerSiswa',detailAbsenPerSiswaController::class);
+Route::get('/detailAbsenPerSiswa/{id}', [detailAbsenPerSiswaController::class, 'show'])->name('detailAbsenPerSiswa.show');
+Route::get('/hadir/{id_siswa}', [hadirController::class, 'show'])->name('hadir');
+
+
+
 
 Route::middleware(CorsMiddleware::class)->group(function () {
     Route::post('/create-folder', [ImageRegistrationController::class, 'createFolder']);
@@ -51,8 +67,7 @@ Route::middleware(CorsMiddleware::class)->group(function () {
 Route::get('/pengajuan', function () {
     return view('admin.rekap.pengajuan.index');
 });
-
-
+Route::resource('siswaAbsen',guruController::class);
 
 
 

@@ -2,18 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Profile_siswa;
+use Illuminate\Http\Request;
 
-class hadirController extends Controller
+class guruAbsenController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $slug = "hadir";
-        return view("admin.rekap.biodata.hadir",compact("slug"));
+        $slug = "detailAbsen";
+        $siswa = Profile_siswa::all();
+        return view('layout_guru.absen', compact('slug', 'siswa'));
     }
 
     /**
@@ -35,16 +36,9 @@ class hadirController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id_siswa)
+    public function show(string $id)
     {
-        $siswa = Profile_siswa::find($id_siswa);
-
-        if (!$siswa) {
-            abort(404); // Handle jika siswa tidak ditemukan
-        }
-
-        return view('admin.rekap.biodata.hadir', compact('siswa'));
-
+        //
     }
 
     /**

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Log;
+use App\Models\Profile_siswa;
 
 class ImageRegistrationController extends Controller
 {
@@ -14,7 +15,8 @@ class ImageRegistrationController extends Controller
     public function index()
     {
         $slug = "regist";
-        return view("guru.faceRecognition.regist",compact("slug"));
+        $siswa = Profile_siswa::all();
+        return view("guru.faceRecognition.regist",compact("slug","siswa"));
     }
 
     public function createFolder(Request $request)
@@ -112,7 +114,8 @@ class ImageRegistrationController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $datasiswa = Profile_siswa::findOrFail($id);
+        return view('guru.faceRecognition.regist', ['datasiswa' => $datasiswa]);
     }
 
     /**
